@@ -8,7 +8,7 @@ echo -e '\033[33m----------Starting ubuntu update and programs installation-----
 echo -e "\033[0m"
 sudo apt-get update
 
-sudo apt-get install mysql-server-5.5 php5 php5-mysql php5-gd apache2 phpmyadmin geany gnome-shell -y
+sudo apt-get install mysql-server-5.5 php5 php5-mysql php5-gd apache2 phpmyadmin geany gnome-shell drush -y
 
 sudo a2enmod rewrite
 
@@ -26,7 +26,7 @@ read -p 'Press [Enter] Key To Start'
 sleep 2
 
 echo 'This may take a while...Grab a gloves and punch some of your friends! XD'
-sleep 2
+sleep 4
 
 #Install drupal in home directory
 echo '----------Installing Drupal----------'
@@ -40,8 +40,9 @@ echo -e "\033[0m"
 sleep 2
 
 #This will accept the inputed fake domain file name from the user
-echo "Enter your Fake Domain Name( ex. myFakedomainName )"
-read dname
+echo -e '\033[33m----------Please Enter your Fake Domain name----------\033[33m'
+echo -e "\033[0m"
+echo "Enter your Fake Domain Name( ex. myFakedomainName )" read dname
 sudo touch /etc/apache2/sites-available/$dname
 
 #Changing the Directory
@@ -122,7 +123,23 @@ echo -e "\033[0m"
 sleep 2
 sudo mkdir $docroot/sites/files
 
+#Creating a settings.php from default.settings.php
+echo -e '\033[33m----------Creating a settings.php ----------\033[33m'
+echo -e "\033[0m"
+sleep 2
+sudo cp $docroot/sites/default.settings.php $docroot/sites/settings.php
+
+
+#Set Permission as a+rwx to created files folder and settings.php
+echo -e '\033[33m----------Set Permission to created files folder and settings.php ----------\033[33m'
+echo -e "\033[0m"
+sleep 2
+sudo chmod a+wx $docroot/sites/settings.php && chmod a+wx $docroot/sites/files
+
+
+
 #The End of the Installation
 echo -e '\033[33m----------The End of the Drupal Installation----------\033[33m'
+echo '----------You can now Install your Drupal in your browser--------'
+echo '----------Thank You!--------'
 echo -e "\033[0m"
-

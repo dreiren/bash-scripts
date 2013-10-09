@@ -116,6 +116,12 @@ echo -e "\033[0m"
 sleep 2
 sudo cp -R  ~/drupal-7.23/  $docroot
 
+#Creating folder "files" in /var/www/$docroot 
+echo -e '\033[33m----------Creating folder "files" in $docroot/sites----------\033[33m'
+echo -e "\033[0m"
+sleep 2
+sudo mkdir $docroot/sites/files
+
 #The End of the Installation
 echo -e '\033[33m----------The End of the Drupal Installation----------\033[33m'
 echo -e "\033[0m"

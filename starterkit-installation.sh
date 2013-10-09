@@ -8,7 +8,7 @@ echo -e '\033[33m----------Starting ubuntu update and programs installation-----
 echo -e "\033[0m"
 sudo apt-get update
 
-sudo apt-get install mysql-server-5.5 php5 php5-mysql php-5-gd apache2 phpmyadmin geany gnome-shell -y
+sudo apt-get install mysql-server-5.5 php5 php5-mysql php5-gd apache2 phpmyadmin geany gnome-shell -y
 
 sudo a2enmod rewrite
 

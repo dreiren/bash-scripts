@@ -42,7 +42,8 @@ sleep 2
 #This will accept the inputed fake domain file name from the user
 echo -e '\033[33m----------Please Enter your Fake Domain name----------\033[33m'
 echo -e "\033[0m"
-echo "Enter your Fake Domain Name( ex. myFakedomainName )" read dname
+echo "Enter your Fake Domain Name( ex. myFakedomainName )" 
+read dname
 sudo touch /etc/apache2/sites-available/$dname
 
 #Changing the Directory
@@ -121,21 +122,43 @@ sudo cp -R  ~/drupal-7.23/  $docroot
 echo -e '\033[33m----------Creating folder "files" in $docroot/sites----------\033[33m'
 echo -e "\033[0m"
 sleep 2
-sudo mkdir $docroot/sites/files
+sudo mkdir $docroot/sites/default/files
 
 #Creating a settings.php from default.settings.php
 echo -e '\033[33m----------Creating a settings.php ----------\033[33m'
 echo -e "\033[0m"
 sleep 2
-sudo cp $docroot/sites/default.settings.php $docroot/sites/settings.php
+sudo cp $docroot/sites/default/default.settings.php $docroot/sites/default/settings.php
 
 
 #Set Permission as a+rwx to created files folder and settings.php
 echo -e '\033[33m----------Set Permission to created files folder and settings.php ----------\033[33m'
 echo -e "\033[0m"
 sleep 2
-sudo chmod a+wx $docroot/sites/settings.php && chmod a+wx $docroot/sites/files
+sudo chmod uga+rwx $docroot/sites/default/settings.php && sudo chmod uga+rwx $docroot/sites/default/files
 
+
+#Create database for druapal site
+echo -e '\033[33m----------Create database for druapal site----------\033[33m'
+echo -e "\033[0m"
+
+echo "Enter database Username: "
+read  uname
+echo "Enter database password: "
+read  -s pass
+echo "Name of Database: "
+read  dbname
+#Create database
+mysqladmin -u$uname -p$pass create $dbname
+echo -e '\033[33m----------Creating Database Successful----------\033[33m'
+echo -e "\033[0m"
+
+
+
+#Restarting the apache2
+echo -e '\033[33m----------Restarting the Apache2----------\033[33m'
+echo -e "\033[0m"
+sudo service apache2 restart
 
 
 #The End of the Installation

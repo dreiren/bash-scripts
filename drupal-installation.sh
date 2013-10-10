@@ -1,10 +1,5 @@
-#!bin/bash
-#
-#This bash script is to install drupal
-
-
 echo ''
-echo -e '\033[33m#---------This will install Drupal---------#\033[33m#'
+echo -e '\033[33m#---------This will install Drupal in Home Directory---------#\033[33m#'
 sleep 2
 
 read -p 'Press [Enter] Key To Start'
@@ -120,8 +115,30 @@ sudo cp $docroot/sites/default/default.settings.php $docroot/sites/default/setti
 echo -e '\033[33m----------Set Permission to created files folder and settings.php ----------\033[33m'
 echo -e "\033[0m"
 sleep 2
-sudo chmod 777 $docroot/sites/default/settings.php && chmod 777 $docroot/sites/default/files
+sudo chmod uga+rwx $docroot/sites/default/settings.php && sudo chmod uga+rwx $docroot/sites/default/files
 
+
+#Create database for druapal site
+echo -e '\033[33m----------Create database for druapal site----------\033[33m'
+echo -e "\033[0m"
+
+echo "Enter database Username: "
+read  uname
+echo "Enter database password: "
+read  -s pass #-s used to hide the password input of the user
+echo "Name of Database: "
+read  dbname
+#Create database
+mysqladmin -u$uname -p$pass create $dbname
+echo -e '\033[33m----------Creating Database Successful----------\033[33m'
+echo -e "\033[0m"
+
+
+
+#Restarting the apache2
+echo -e '\033[33m----------Restarting the Apache2----------\033[33m'
+echo -e "\033[0m"
+sudo service apache2 restart
 
 
 #The End of the Installation

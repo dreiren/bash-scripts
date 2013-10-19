@@ -1,3 +1,5 @@
+#!bin/bash
+#Drupal Installation and Fake Domain Creation
 echo ''
 echo -e '\033[33m#---------This will install Drupal in Home Directory---------#\033[33m#'
 sleep 2

@@ -16,6 +16,7 @@ echo '----------Supply Root Password---------'
 echo -e "\33m[0m"
 sudo wget http://ftp.drupal.org/files/projects/drupal-7.23.tar.gz
 
+
 #Ceate Fake Domain
 echo -e '\033[33m----------Create Fake Domain----------\033[33m'
 echo -e "\033[0m"
@@ -67,14 +68,16 @@ cd /etc/
 echo -e '\033[33m----------Editing /etc/hosts----------\033[33m'
 echo -e "\033[0m"
 sleep 2
-echo "127.0.1.1 $servername" | sudo tee -a hosts #in Exchange of >> sudo hosts to append this text
+echo "Type host (Ex. 127.0.1.1): "
+read host
+echo "$host $servername" | sudo tee -a hosts #in Exchange of >> sudo hosts to append this text
 
 
 #enable the fake domain
 echo -e '\033[33m----------Enabling the Fake domain----------\033[33m'
 echo -e '\033[0m'
 sleep 2
-sudo a2ensite auinp
+sudo a2ensite $dname
 
 #Reloading apache2
 echo -e '\033[33m----------Reloading apache2----------\033[33m'
@@ -87,6 +90,7 @@ echo -e '\033[33m----------Change Directory to /etc/----------\033[33m'
 echo -e "\033[0m"
 sleep 2
 cd
+
 
 #Extract drupal
 echo -e '\033[33m----------Extracting drupal-7.23.tar.gz----------\033[33m'

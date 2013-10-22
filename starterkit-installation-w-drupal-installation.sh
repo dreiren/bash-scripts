@@ -68,8 +68,11 @@ read docroot
 echo "<Virtualhost :*80>
 	ServerName $servername
 	DocumentRoot $docroot
-	</Virtualhost>" | sudo tee $dname #in Exchange of > sudo auinp
-
+	</Virtualhost>" | sudo tee $dname #in Exchange of > sudo fake domain name
+echo -e '\033[33m----------Adding Document Root folder----------\033[33m'
+echo -e "\033[0m"
+sleep 2
+sudo mkdir $docroot
 
 #Adding the created faked domain to hosts
 echo -e '\033[33m----------Add the Fake domain to hosts----------\033[33m'
